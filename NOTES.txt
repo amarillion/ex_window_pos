@@ -1,0 +1,21 @@
+martijn@siepie:~/prg/alleg/bug-window-position$ ./hello 
+Reading window position: 2147483647,2147483647: 640x480
+Saving window position: 630,303: 640x480
+martijn@siepie:~/prg/alleg/bug-window-position$ ./hello 
+Reading window position: 630,303: 640x480
+Saving window position: 630,327: 640x480
+martijn@siepie:~/prg/alleg/bug-window-position$ ./hello 
+Reading window position: 630,327: 640x480
+Saving window position: 630,351: 640x480
+martijn@siepie:~/prg/alleg/bug-window-position$ ./hello 
+Reading window position: 630,351: 640x480
+Saving window position: 630,375: 640x480
+martijn@siepie:~/prg/alleg/bug-window-position$ ./hello 
+Reading window position: 630,375: 640x480
+Saving window position: 630,399: 640x480
+martijn@siepie:~/prg/alleg/bug-window-position$ ./hello 
+Reading window position: 630,399: 640x480
+Saving window position: 630,423: 640x480
+martijn@siepie:~/prg/alleg/bug-window-position$ ./hello 
+Reading window position: 630,423: 640x480
+Saving window position: 630,447: 640x480
