@@ -5,29 +5,31 @@ BUILD=RELEASE
 
 LIBS = 
 CFLAGS = -Iinclude -W -Wall
-
-ALLEGRO_MODULES=allegro allegro_font allegro_color
-
-ifeq ($(BUILD),RELEASE)
-	CFLAGS += -O3 -s
-	ALLEGRO_LIBS = $(addsuffix -5, $(ALLEGRO_MODULES))
-endif
-ifeq ($(BUILD),DEBUG)
-	CFLAGS += -g -DDEBUG
-	ALLEGRO_LIBS = $(addsuffix -debug-5, $(ALLEGRO_MODULES))
-endif
-
-LIBS += `pkg-config --libs $(ALLEGRO_LIBS)`
-
-# linux-specific stuff:
 GPP = g++
 BINSUF =
 LFLAGS = 
-ifeq ($(BUILD),RELEASE)
-	LIBS += `allegro-config --libs`
-endif
-ifeq ($(BUILD),DEBUG)
-	LIBS += `allegro-config --libs debug`
+
+ifdef WINDOWS
+	CFLAGS += -D__GTHREAD_HIDE_WIN32API
+	LFLAGS += -Wl,--subsystem,windows
+	ifeq ($(BUILD),RELEASE)
+		LIBS += -lallegro_monolith
+	endif
+	ifeq ($(BUILD),DEBUG)
+		LIBS += -lallegro_monolith-debug
+	endif
+	BINSUF = .exe
+else
+	ALLEGRO_MODULES=allegro allegro_font allegro_color
+	ifeq ($(BUILD),RELEASE)
+		CFLAGS += -O3 -s
+		ALLEGRO_LIBS = $(addsuffix -5, $(ALLEGRO_MODULES))
+	endif
+	ifeq ($(BUILD),DEBUG)
+		CFLAGS += -g -DDEBUG
+		ALLEGRO_LIBS = $(addsuffix -debug-5, $(ALLEGRO_MODULES))
+	endif
+	LIBS += `pkg-config --libs $(ALLEGRO_LIBS)`
 endif
 
 OBJDIR=obj
